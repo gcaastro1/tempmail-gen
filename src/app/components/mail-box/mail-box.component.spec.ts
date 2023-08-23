@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { By } from '@angular/platform-browser'
 import { DebugElement } from '@angular/core'
 
-import { TextInputComponent } from './textInput.component'
+import { MailBoxComponent } from './mail-box.component'
 
-describe('TextInputComponent', () => {
-  let component: TextInputComponent
-  let fixture: ComponentFixture<TextInputComponent>
+describe('MailBoxComponent', () => {
+  let component: MailBoxComponent
+  let fixture: ComponentFixture<MailBoxComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextInputComponent],
+      declarations: [MailBoxComponent],
     }).compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TextInputComponent)
+    fixture = TestBed.createComponent(MailBoxComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

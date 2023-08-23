@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://dropmail.me/api/graphql/",
+    "secure": false
+  }
+}
