@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { AddressProps, MailProps } from './interfaces/api.interfaces'
+import { OneSignal } from 'onesignal-ngx'
 
 import { Subscription, timer } from 'rxjs'
 import { ApiService } from './services/api.service'
@@ -26,9 +27,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   id = localStorage.getItem('@DropMail:ID' || null)
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private oneSignal: OneSignal) {}
 
   ngOnInit() {
+    this.oneSignal.init({
+      appId: '98ca200e-881d-4cd4-9623-b2a353dc3ef1',
+    })
+
     if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
         this.getSession()
