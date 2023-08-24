@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Observable } from 'rxjs'
 import { MailProps } from 'src/app/interfaces/api.interfaces'
 
 @Component({
@@ -12,6 +13,11 @@ export class MailCardComponent implements OnInit {
 
   @Output()
   selectedMail = new EventEmitter<{ mail: MailProps }>()
+
+  new: boolean =
+    new Date(this.mail?.receivedAt!).getTime == new Date().getTime
+      ? true
+      : false
 
   ngOnInit() {}
 

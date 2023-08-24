@@ -1,27 +1,42 @@
-# Gerador de Email Temporario - Dropmail Challenge
+<div align="center">
+  <img align="center" width="300" src="./src/assets/drop-logo.svg" />
+</div>
+<br /><br />
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+# DropMailer. - This is a challenge by [Coodesh](https://coodesh.com)
+
+This is an application that generates temporary emails to protect your information and receive new emails.
+
+This project was developed with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+The API was used: [Dropmail.me](https://dropmail.me/api/#)
+
+Other technologies/libraries used were:
+
+- [Apollo](https://www.npmjs.com/package/apollo-angular)
+- [FontAwesomeIcons](https://fontawesome.com/v5/docs/web/use-with/angular)
+- [TypeScript](https://www.typescriptlang.org/)
+- [cors-anywhere](https://github.com/Rob--W/cors-anywhere)
+
+## Install Dependencies
+
+After cloning this application, to install dependencies run the command:
+
+```shell
+  npm install
+```
+
+or
+
+```shell
+npm i
+```
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run the application use the command:
 
-## Code scaffolding
+```shell
+  ng serve
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To start the development server. To access, just go to the route http://localhost:4200/. The application will automatically update after any file changes.

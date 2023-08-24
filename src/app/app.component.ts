@@ -29,78 +29,13 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.mails = [
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 2',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 3',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 3',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 3',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 3',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-      {
-        id: 'mail.id',
-        to: 'mcleberson@mail.com',
-        from: 'gcaastro1@gmail.com',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis.  Delegadis gente finis, bibendum egestas augue arcu ut est. Paisis, filhis, espiritis santis. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi.',
-        html: 'mail.html',
-        subject: 'TITULO DO EMAIL 3',
-        receivedAt: '2021-02-18T01:41:50+00:00',
-      },
-    ]
-    /* if (!!this.expires) {
+    if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
         this.getSession()
       } else this.newSession()
     } else this.newSession()
 
-    this.refreshSession() */
+    this.refreshSession()
   }
 
   ngOnDestroy() {
@@ -125,6 +60,7 @@ export class AppComponent implements OnInit, OnDestroy {
   getSession() {
     this.api.getSession().valueChanges.subscribe(({ data }) => {
       this.session = addressData(data)
+      this.getMails()
       this.expires = new Date(localStorage.getItem('@DropMail:Expires')!)
 
       if (!this.session)
