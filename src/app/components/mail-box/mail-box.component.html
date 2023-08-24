@@ -1,1 +1,24 @@
-<div class="h-full w-full p-4">mailBox works!</div>
+<div class class="h-full w-full p-4 flex flex-col gap-8">
+  <div class="flex gap-4 items-center flex-col md:flex-row">
+    <div
+      class="w-10 h-10 rounded-full flex items-center justify-center bg-green-500"
+    >
+      <span class="text-gray-300 text-xl font-bold">{{
+        mail.from.substr(0, 1).toUpperCase()
+      }}</span>
+    </div>
+    <div class="flex flex-col">
+      <h3
+        class="font-semibold text-center md:text-left md:text-lg text-gray-300"
+      >
+        {{ mail.subject }}
+      </h3>
+      <p class="text-light text-gray-400 text-sm md:text-md">
+        {{ mail.from }}
+      </p>
+    </div>
+  </div>
+  <div class="text-gray-400">
+    {{ mail.text }}
+  </div>
+</div>

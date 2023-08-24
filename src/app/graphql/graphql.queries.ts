@@ -8,6 +8,14 @@ const POST_SESSION = gql`
       addresses {
         address
       }
+      mails {
+        rawSize
+        fromAddr
+        toAddr
+        downloadUrl
+        text
+        headerSubject
+      }
     }
   }
 `
@@ -15,6 +23,7 @@ const POST_SESSION = gql`
 const GET_USER_SESSION = gql`
   query ($id: ID!) {
     session(id: $id) {
+      id
       expiresAt
       addresses {
         address
@@ -31,21 +40,20 @@ const GET_USER_SESSION = gql`
   }
 `
 
-const GET_ALL_SESSIONS = gql`
-  query {
-    sessions {
-      id
-      expiresAt
+const GET_USER_MAILS = gql`
+  query ($id: ID!) {
+    session(id: $id) {
       mails {
-        rawSize
+        id
         fromAddr
         toAddr
-        downloadUrl
+        html
         text
         headerSubject
+        receivedAt
       }
     }
   }
 `
 
-export { POST_SESSION, GET_USER_SESSION, GET_ALL_SESSIONS }
+export { POST_SESSION, GET_USER_SESSION, GET_USER_MAILS }

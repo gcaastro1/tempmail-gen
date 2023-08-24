@@ -1,0 +1,17 @@
+<div class="flex gap-4 items-center justify-center">
+  <span class="text-gray-400">
+    {{ countDown | async | formatTime }}
+  </span>
+
+  <button
+    type="button"
+    class="rounded-md p-2 flex items-center gap-2 text-gray-400 font-semibold hover:underline"
+    (click)="this.refresh.emit()"
+  >
+    <fa-icon
+      [icon]="refreshIcon"
+      class="border-2 border-gray-400 rounded-full w-6 h-6 flex items-center justify-center p-1 text-sm"
+    ></fa-icon>
+    Refresh
+  </button>
+</div>

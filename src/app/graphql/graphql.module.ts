@@ -8,16 +8,10 @@ const uri =
   'https://cors-anywhere.herokuapp.com/https://dropmail.me/api/graphql/20230822ymQJn'
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
-  const basic = setContext((operation, context) => ({
-    headers: {
-      Accept: 'charset=utf-8',
-    },
-  }))
-
   return {
     link: httpLink.create({ uri }),
     cache: new InMemoryCache(),
-    credentials: 'same-origin',
+    credentials: '*',
   }
 }
 

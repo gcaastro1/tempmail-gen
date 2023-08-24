@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
+import { MailProps } from 'src/app/interfaces/api.interfaces'
 
 @Component({
   selector: 'app-mail-box',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core'
 })
 export class MailBoxComponent implements OnInit {
   constructor() {}
+
+  @Input()
+  mail!: MailProps
 
   ngOnInit() {}
 }

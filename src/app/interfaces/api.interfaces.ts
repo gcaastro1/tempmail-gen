@@ -2,12 +2,24 @@ interface SessionProps {
   address: string
   expiresAt: string
   id: string
+  mails: []
 }
 
-interface MailProps {
+interface AddressProps {
   mails: []
   address: string
   expiresAt: string
+  id: string
 }
 
-export { SessionProps, MailProps }
+interface MailProps {
+  id: string
+  to: string
+  from: string
+  text: string
+  html: string
+  subject: string
+  receivedAt: string
+}
+
+export { SessionProps, AddressProps, MailProps }

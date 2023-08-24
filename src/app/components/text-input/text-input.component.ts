@@ -1,11 +1,7 @@
-import { Component, OnInit, inject, untracked } from '@angular/core'
-import { FormControl } from '@angular/forms'
+import { Component, Input, OnInit } from '@angular/core'
 import { faClipboard } from '@fortawesome/free-solid-svg-icons'
 import { Clipboard } from '@angular/cdk/clipboard'
-import { Apollo } from 'apollo-angular'
-import { POST_SESSION } from 'src/app/graphql/graphql.queries'
-import { sessionData } from 'src/app/common/apiHelper'
-import { SessionProps } from 'src/app/interfaces/api.interfaces'
+import { ApiService } from 'src/app/services/api.service'
 
 @Component({
   selector: 'app-text-input',
@@ -17,44 +13,20 @@ export class TextInputComponent implements OnInit {
 
   showContent = false
 
-  session: SessionProps | undefined
-  error: any
+  @Input()
+  address: string | undefined = ''
 
-  email = new FormControl({ value: '', disabled: true })
+  constructor(private api: ApiService, private clipboard: Clipboard) {}
 
-  private clipboard = inject(Clipboard)
+  ngOnInit() {}
 
-  constructor(private apollo: Apollo) {}
-
-  ngOnInit() {
-    const id = localStorage.getItem('@DropMail:ID')
-
-    /* if (!id) this.createSession()
-    else return */
-  }
+  ngOnChanges() {}
 
   copyEmail() {
-    this.clipboard.copy(this.email.value!)
+    this.clipboard.copy(this.address!)
     this.showContent = true
     setTimeout(() => {
       this.showContent = false
     }, 1000)
   }
-
-  createSession() {
-    this.apollo
-      .mutate({
-        mutation: POST_SESSION,
-      })
-      .subscribe(({ data }) => {
-        this.session = sessionData(data)
-        this.email.setValue(this.session.address)
-        localStorage.setItem('@DropMail:ID', this.session.id),
-          (error: unknown) => {
-            console.error(error)
-          }
-      })
-  }
-
-  getSession() {}
 }

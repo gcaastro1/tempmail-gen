@@ -8,17 +8,23 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { TextInputComponent } from './components/text-input/text-input.component'
-import { AsideComponent } from './components/aside/aside.component'
+import { MailListComponent } from './components/mail-list/mail-list.component'
 import { MailBoxComponent } from './components/mail-box/mail-box.component'
 import { MailCardComponent } from './components/mail-card/mail-card.component'
+import {
+  FormatTimePipe,
+  RefreshButtonComponent,
+} from './components/refresh-button/refresh-button.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     TextInputComponent,
-    AsideComponent,
+    MailListComponent,
     MailBoxComponent,
     MailCardComponent,
+    RefreshButtonComponent,
+    FormatTimePipe,
   ],
   imports: [
     BrowserModule,

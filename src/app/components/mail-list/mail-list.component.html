@@ -1,0 +1,17 @@
+<ul class="max-h-full h-full w-full overflow-y-auto flex flex-col items-center">
+  <div *ngIf="mails.length > 0" class="w-full">
+    <app-mail-card
+      *ngFor="let mail of mails"
+      [mail]="mail"
+      (selectedMail)="onMailSelected($event)"
+    ></app-mail-card>
+  </div>
+
+  <div
+    *ngIf="mails.length === 0"
+    class="h-full flex flex-col items-center justify-center py-8"
+  >
+    <fa-icon [icon]="inbox" class="text-green-400 text-2xl"></fa-icon>
+    <p class="text-gray-400 font-medium">Your mail box is empty!</p>
+  </div>
+</ul>
