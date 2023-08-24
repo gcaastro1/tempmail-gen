@@ -7,6 +7,7 @@
     class="w-80 max-w-full"
   ></app-text-input>
   <app-refresh-button
+    class="w-80 max-w-full"
     [expires]="this.expires"
     (refresh)="this.newSession()"
   ></app-refresh-button>
@@ -16,9 +17,10 @@
     <app-mail-list
       [mails]="this.mails"
       (selected)="getSelectedMail($event)"
-      class="w-[800px] md:w-[500px] h-[200px] md:h-full max-w-full bg-gray-900 rounded-md"
+      class="w-[800px] md:w-[500px] h-[200px] md:h-full max-w-full bg-gray-900 rounded-md transition-all"
     ></app-mail-list>
     <app-mail-box
+      class="transition-all"
       *ngIf="!!selectedMail"
       [mail]="selectedMail"
       class="w-full bg-gray-900 rounded-md"
