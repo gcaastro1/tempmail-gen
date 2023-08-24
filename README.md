@@ -25,7 +25,9 @@ After cloning this application, to install dependencies run the command:
   npm install
 ```
 
+<p align="center">
 or
+</p>
 
 ```shell
 npm i
