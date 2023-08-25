@@ -37,12 +37,12 @@ export class AppComponent implements OnInit, OnDestroy {
       Notification.permission === 'granted' ||
       Notification.permission === 'denied'
     ) {
-      this.showButton = true
+      this.showButton = false
     }
     if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
+        console.log('oi')
         this.getSession()
-        this.getMails()
       } else this.newSession()
     } else this.newSession()
 
@@ -71,6 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
   getSession() {
     this.api.getSession().valueChanges.subscribe(({ data }) => {
       this.session = addressData(data)
+      this.mails = mailData({ session: { mails: this.session?.mails } })
       this.expires = new Date(localStorage.getItem('@DropMail:Expires')!)
       if (!this.session)
         this.newSession(),
@@ -82,9 +83,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   getMails() {
     this.api.getMails().valueChanges.subscribe(({ data }) => {
-      console.log(`antes de receber: ${this.mails.length}`)
       this.mails = mailData(data)
-      console.log(`depois de receber: ${this.mails.length}`)
+      if (this.mails.length > this.mailsCount) {
+        if (this.mails.length > this.mailsCount + 1) {
+          this.mailsCount = this.mails.length
+        } else {
+          this.mailsCount++
+          new Notification('You have new email.')
+        }
+      }
     })
   }
 

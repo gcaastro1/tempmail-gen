@@ -6,7 +6,7 @@ interface SessionProps {
 }
 
 interface AddressProps {
-  mails: []
+  mails: MailProps[]
   address: string
   expiresAt: string
   id: string
@@ -14,11 +14,11 @@ interface AddressProps {
 
 interface MailProps {
   id: string
-  to: string
-  from: string
+  toAddr: string
+  fromAddr: string
   text: string
   html: string
-  subject: string
+  headerSubject: string
   receivedAt: string
 }
 

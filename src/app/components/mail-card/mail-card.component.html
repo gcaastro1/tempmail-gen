@@ -3,8 +3,8 @@
   (click)="selectMail()"
 >
   <div class="flex justify-between items-center">
-    <h3 class="text-lg font-semibold text-gray-400">{{ mail?.from }}</h3>
+    <h3 class="text-lg font-semibold text-gray-400">{{ mail?.fromAddr }}</h3>
     <p class="text-md text-gray-400">New</p>
   </div>
-  <div class="text-md italic text-gray-400">{{ mail?.subject }}</div>
+  <div class="text-md italic text-gray-400">{{ mail?.headerSubject }}</div>
 </li>

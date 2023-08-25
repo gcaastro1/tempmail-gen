@@ -15,12 +15,13 @@ export const sessionData = (data: any): SessionProps => {
 
 export const addressData = (data: any): AddressProps | null => {
   if (data.session) {
-    return {
+    const body: AddressProps = {
       expiresAt: data.session.expiresAt,
       address: data.session.addresses[0].address,
-      mails: data.session.mails,
       id: data.session.id,
+      mails: data.session.mails,
     }
+    return body
   } else {
     return null
   }
@@ -32,11 +33,11 @@ export const mailData = (data: any): MailProps[] => {
     data.session.mails.forEach((mail: any) => {
       mails.push({
         id: mail.id,
-        to: mail.toAddr,
-        from: mail.fromAddr,
+        toAddr: mail.toAddr,
+        fromAddr: mail.fromAddr,
         text: mail.text,
         html: mail.html,
-        subject: mail.headerSubject,
+        headerSubject: mail.headerSubject,
         receivedAt: mail.receivedAt,
       })
     })

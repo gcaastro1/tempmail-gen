@@ -4,17 +4,17 @@
       class="w-10 h-10 rounded-full flex items-center justify-center bg-green-500"
     >
       <span class="text-gray-300 text-xl font-bold">{{
-        mail.from.substr(0, 1).toUpperCase()
+        mail.fromAddr.substr(0, 1).toUpperCase()
       }}</span>
     </div>
     <div class="flex flex-col">
       <h3
         class="font-semibold text-center md:text-left md:text-lg text-gray-300"
       >
-        {{ mail.subject }}
+        {{ mail.headerSubject }}
       </h3>
       <p class="text-light text-gray-400 text-sm md:text-md">
-        {{ mail.from }}
+        {{ mail.fromAddr }}
       </p>
     </div>
   </div>

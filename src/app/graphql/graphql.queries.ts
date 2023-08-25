@@ -29,12 +29,13 @@ const GET_USER_SESSION = gql`
         address
       }
       mails {
-        rawSize
+        id
         fromAddr
         toAddr
-        downloadUrl
+        html
         text
         headerSubject
+        receivedAt
       }
     }
   }

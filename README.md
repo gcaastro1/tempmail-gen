@@ -12,6 +12,7 @@ The API was used: [Dropmail.me](https://dropmail.me/api/#)
 
 Other technologies/libraries used were:
 
+- [TailwindCSS](https://tailwindcss.com/)
 - [Apollo](https://www.npmjs.com/package/apollo-angular)
 - [FontAwesomeIcons](https://fontawesome.com/v5/docs/web/use-with/angular)
 - [TypeScript](https://www.typescriptlang.org/)
