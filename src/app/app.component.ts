@@ -39,14 +39,14 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {
       this.showButton = true
     }
-    /* if (!!this.expires) {
+    if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
         this.getSession()
         this.getMails()
       } else this.newSession()
     } else this.newSession()
 
-    this.refreshSession() */
+    this.refreshSession()
   }
 
   ngOnDestroy() {
