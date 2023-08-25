@@ -41,7 +41,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
-        console.log('oi')
         this.getSession()
       } else this.newSession()
     } else this.newSession()
