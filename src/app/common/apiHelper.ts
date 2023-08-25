@@ -41,8 +41,5 @@ export const mailData = (data: any): MailProps[] => {
       })
     })
   }
-
-  console.log(mails)
-
   return mails
 }

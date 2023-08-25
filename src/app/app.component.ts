@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { AddressProps, MailProps } from './interfaces/api.interfaces'
-import { OneSignal } from 'onesignal-ngx'
 
 import { Subscription, timer } from 'rxjs'
 import { ApiService } from './services/api.service'
@@ -23,24 +22,31 @@ export class AppComponent implements OnInit, OnDestroy {
 
   mails: MailProps[] = []
 
+  mailsCount: number = 0
+
   selectedMail: MailProps | null = null
+
+  showButton: boolean = true
 
   id = localStorage.getItem('@DropMail:ID' || null)
 
-  constructor(private api: ApiService, private oneSignal: OneSignal) {}
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
-    this.oneSignal.init({
-      appId: '98ca200e-881d-4cd4-9623-b2a353dc3ef1',
-    })
-
-    if (!!this.expires) {
+    if (
+      Notification.permission === 'granted' ||
+      Notification.permission === 'denied'
+    ) {
+      this.showButton = true
+    }
+    /* if (!!this.expires) {
       if (!!this.id && this.expires > new Date()) {
         this.getSession()
+        this.getMails()
       } else this.newSession()
     } else this.newSession()
 
-    this.refreshSession()
+    this.refreshSession() */
   }
 
   ngOnDestroy() {
@@ -65,9 +71,7 @@ export class AppComponent implements OnInit, OnDestroy {
   getSession() {
     this.api.getSession().valueChanges.subscribe(({ data }) => {
       this.session = addressData(data)
-      this.getMails()
       this.expires = new Date(localStorage.getItem('@DropMail:Expires')!)
-
       if (!this.session)
         this.newSession(),
           (error: unknown) => {
@@ -78,7 +82,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   getMails() {
     this.api.getMails().valueChanges.subscribe(({ data }) => {
+      console.log(`antes de receber: ${this.mails.length}`)
       this.mails = mailData(data)
+      console.log(`depois de receber: ${this.mails.length}`)
     })
   }
 

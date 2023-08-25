@@ -1,11 +1,15 @@
 <div
-  class="flex flex-col gap-8 items-center justify-center w-screen min-h-screen h-full p-10 bg-gray-800"
+  class="flex flex-col gap-8 items-center justify-center w-screen max-w-full min-h-screen h-full p-10 bg-gray-800"
 >
   <img src="assets/drop-logo.svg" alt="Site logo" class="w-60 max-w-full" />
   <app-text-input
     [address]="this.session?.address"
     class="w-80 max-w-full"
   ></app-text-input>
+  <app-notification-button
+    *ngIf="showButton"
+    class="fixed bottom-0"
+  ></app-notification-button>
   <app-refresh-button
     class="w-80 max-w-full"
     [expires]="this.expires"

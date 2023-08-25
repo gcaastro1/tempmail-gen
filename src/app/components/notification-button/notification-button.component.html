@@ -1,0 +1,31 @@
+<div
+  *ngIf="notify"
+  class="flex flex-col gap-2 bg-gray-900 w-full max-w-[280px] h-fit fixed inset-4 rounded-md p-4"
+>
+  <h1 class="font-bold text-lg text-green-500">Turn on the notifications.</h1>
+  <p class="text-sm text-gray-200">
+    We will keep you informed when new emails arrive.
+  </p>
+  <div class="flex gap-2 justify-end">
+    <button
+      class="bg-red-500 py-1 px-3 text-sm font-semibold rounded-md"
+      (click)="closeNotify()"
+    >
+      No Thanks
+    </button>
+    <button
+      class="bg-green-500 py-1 px-3 text-sm font-semibold rounded-md"
+      (click)="confirmNotifcation()"
+    >
+      Allow
+    </button>
+  </div>
+</div>
+
+<button
+  type="button"
+  (click)="showNotify()"
+  class="bg-green-500 py-2 px-3 rounded-full cursor-pointer fixed bottom-4 right-4"
+>
+  <fa-icon [icon]="bell"></fa-icon>
+</button>

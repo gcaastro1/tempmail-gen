@@ -15,6 +15,7 @@ import {
   FormatTimePipe,
   RefreshButtonComponent,
 } from './components/refresh-button/refresh-button.component'
+import { NotificationButtonComponent } from './components/notification-button/notification-button.component'
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {
     MailCardComponent,
     RefreshButtonComponent,
     FormatTimePipe,
+    NotificationButtonComponent,
   ],
   imports: [
     BrowserModule,
