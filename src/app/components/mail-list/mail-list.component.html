@@ -1,17 +1,25 @@
-<ul class="max-h-full h-full w-full overflow-y-auto flex flex-col items-center">
+<ul class="max-h-full h-full w-full overflow-y-auto flex flex-col items-center custom-scrollbar">
   <div *ngIf="mails.length > 0" class="w-full">
     <app-mail-card
-      *ngFor="let mail of mails"
+      *ngFor="let mail of mails; let i = index"
       [mail]="mail"
       (selectedMail)="onMailSelected($event)"
+      class="animate-fade-in-up block"
+      [style.animation-delay]="i * 100 + 'ms'"
     ></app-mail-card>
   </div>
 
   <div
     *ngIf="mails.length === 0"
-    class="h-full flex flex-col items-center justify-center py-8"
+    class="h-full w-full flex flex-col items-center justify-center p-8 bg-slate-900/50"
   >
-    <fa-icon [icon]="inbox" class="text-green-400 text-2xl"></fa-icon>
-    <p class="text-gray-400 font-medium">Your mail box is empty!</p>
+    <div class="relative w-24 h-24 mb-6 animate-pulse">
+      <div class="absolute inset-0 bg-green-500 rounded-full blur-xl opacity-20"></div>
+      <div class="relative bg-slate-800 border border-slate-700 w-full h-full rounded-full flex items-center justify-center shadow-inner">
+        <fa-icon [icon]="inbox" class="text-green-400 text-4xl drop-shadow-md"></fa-icon>
+      </div>
+    </div>
+    <h3 class="text-xl font-bold text-slate-200 mb-2">Inbox Empty</h3>
+    <p class="text-slate-400 text-center text-sm max-w-[250px]">Waiting for incoming emails... they will magically appear here.</p>
   </div>
 </ul>

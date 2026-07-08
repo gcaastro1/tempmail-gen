@@ -1,33 +1,73 @@
+<div *ngIf="state.corsError()" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-900/95 backdrop-blur-sm p-6 text-center animate-fade-in-up">
+  <div class="bg-slate-800 border border-slate-700 p-8 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full flex flex-col items-center gap-6">
+    <div class="w-20 h-20 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center shadow-inner">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="text-2xl md:text-3xl font-bold text-white">Connection Error</h2>
+      <p class="text-slate-300 leading-relaxed">
+        We could not connect to the Dropmail API. This is usually caused by ad-blockers or temporary network blocks.
+      </p>
+    </div>
+    <button 
+      (click)="state.newSession()"
+      class="mt-2 w-full py-4 rounded-xl font-bold text-slate-900 bg-green-500 hover:bg-green-400 transition-all duration-300 shadow-[0_0_15px_rgba(74,222,128,0.5)] hover:shadow-[0_0_25px_rgba(74,222,128,0.7)] active:scale-95 flex items-center justify-center gap-2"
+    >
+      Try Again
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+      </svg>
+    </button>
+    <p class="text-xs text-slate-500 mt-2">If the problem persists, please check your network or try again later.</p>
+  </div>
+</div>
+
 <div
-  class="flex flex-col gap-8 items-center justify-center w-screen max-w-full min-h-screen h-full p-10 bg-gray-800"
+  *ngIf="!state.corsError()"
+  class="flex flex-col gap-8 items-center justify-center w-screen max-w-full min-h-screen h-full p-4 md:p-10 bg-slate-900 text-slate-200"
 >
-  <img src="assets/drop-logo.svg" alt="Site logo" class="w-60 max-w-full" />
+  <img src="assets/drop-logo.svg" alt="Site logo" class="w-60 max-w-full drop-shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-transform hover:scale-105 duration-300" />
+  
   <app-text-input
-    [address]="this.session?.address"
-    class="w-80 max-w-full"
+    [address]="state.session()?.address"
+    class="w-full sm:w-96 max-w-full"
   ></app-text-input>
+
   <app-notification-button
-    *ngIf="showButton"
-    class="fixed bottom-0"
+    *ngIf="showNotificationButton"
+    class="fixed bottom-0 z-50"
   ></app-notification-button>
+
   <app-refresh-button
-    class="w-80 max-w-full"
-    [expires]="this.expires"
-    (refresh)="this.newSession()"
+    class="w-full sm:w-96 max-w-full"
+    [expires]="state.expires()"
+    (refresh)="state.newSession()"
   ></app-refresh-button>
+
   <div
-    class="flex flex-col justify-center md:flex-row gap-8 md:h-[500px] max-h-full w-[1000px] max-w-full rounded-md"
+    class="flex flex-col justify-center md:flex-row gap-6 md:h-[600px] max-h-[80vh] w-[1100px] max-w-full"
   >
     <app-mail-list
-      [mails]="this.mails"
-      (selected)="getSelectedMail($event)"
-      class="w-[800px] md:w-[500px] h-[200px] md:h-full max-w-full bg-gray-900 rounded-md transition-all"
+      [mails]="state.mails()"
+      (selected)="state.selectMail($event.mail)"
+      class="w-full md:w-[400px] h-[350px] md:h-full max-w-full bg-slate-800 border border-slate-700 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all overflow-hidden flex flex-col"
     ></app-mail-list>
+    
     <app-mail-box
-      class="transition-all"
-      *ngIf="!!selectedMail"
-      [mail]="selectedMail"
-      class="w-full bg-gray-900 rounded-md"
+      class="transition-all w-full md:flex-1 bg-slate-800 border border-slate-700 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] overflow-hidden"
+      *ngIf="state.selectedMail() as mail"
+      [mail]="mail"
     ></app-mail-box>
+    
+    <div *ngIf="!state.selectedMail()" class="hidden md:flex transition-all w-full md:flex-1 bg-slate-800 border border-slate-700 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] items-center justify-center text-slate-400 font-medium">
+      <div class="flex flex-col items-center gap-4 opacity-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <p>Select an email to read it</p>
+      </div>
+    </div>
   </div>
 </div>

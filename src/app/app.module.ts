@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { ReactiveFormsModule } from '@angular/forms'
 import { GraphQLModule } from './graphql/graphql.module'
-import { HttpClientModule } from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { TextInputComponent } from './components/text-input/text-input.component'
@@ -17,26 +17,19 @@ import {
 } from './components/refresh-button/refresh-button.component'
 import { NotificationButtonComponent } from './components/notification-button/notification-button.component'
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    TextInputComponent,
-    MailListComponent,
-    MailBoxComponent,
-    MailCardComponent,
-    RefreshButtonComponent,
-    FormatTimePipe,
-    NotificationButtonComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-    GraphQLModule,
-    HttpClientModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        TextInputComponent,
+        MailListComponent,
+        MailBoxComponent,
+        MailCardComponent,
+        RefreshButtonComponent,
+        FormatTimePipe,
+        NotificationButtonComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        GraphQLModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

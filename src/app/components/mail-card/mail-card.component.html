@@ -1,9 +1,10 @@
 <li
-  class="py-5 w-full border-b border-gray-800 px-3 transition hover:bg-gray-950 cursor-pointer"
+  class="relative p-5 w-full border-b border-slate-700 transition-all duration-300 hover:bg-slate-700 cursor-pointer group overflow-hidden"
   (click)="selectMail()"
 >
-  <div class="flex justify-between items-center">
-    <h3 class="text-lg font-semibold text-gray-400">{{ mail?.fromAddr }}</h3>
+  <div class="absolute left-0 top-0 bottom-0 w-1 bg-green-500 scale-y-0 group-hover:scale-y-100 transition-transform origin-left"></div>
+  <div class="flex justify-between items-center mb-1">
+    <h3 class="text-md font-bold text-slate-200 truncate pr-4 group-hover:text-green-400 transition-colors">{{ mail?.fromAddr }}</h3>
   </div>
-  <div class="text-md italic text-gray-400">{{ mail?.headerSubject }}</div>
+  <div class="text-sm text-slate-400 truncate">{{ mail?.headerSubject || 'No Subject' }}</div>
 </li>

@@ -1,23 +1,20 @@
-import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular'
+import { Apollo, APOLLO_OPTIONS } from 'apollo-angular'
 import { HttpLink } from 'apollo-angular/http'
-import { NgModule } from '@angular/core'
+import { NgModule, isDevMode } from '@angular/core'
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core'
-import { setContext } from '@apollo/client/link/context'
 
-const uri =
-  'https://cors-anywhere.herokuapp.com/https://dropmail.me/api/graphql/20230822ymQJn'
+const uri = 'https://corsproxy.io/?https://dropmail.me/api/graphql/af_AQVqTpd1pV7-W-bQRsu3yBCrcY0LwI5kHakglUXO';
 
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+export function createApollo(httpLink: HttpLink): ApolloClientOptions {
   return {
     link: httpLink.create({ uri }),
     cache: new InMemoryCache(),
-    credentials: '*',
   }
 }
 
 @NgModule({
-  exports: [ApolloModule],
   providers: [
+    Apollo,
     {
       provide: APOLLO_OPTIONS,
       useFactory: createApollo,

@@ -52,8 +52,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "proxyConfig": "src/proxy.conf.json",
-            "buildTarget": "your-application-name:build"
+            "buildTarget": "dropmail-challenge:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
