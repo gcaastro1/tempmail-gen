@@ -52,15 +52,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "your-application-name:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "src/proxy.conf.json",
+            "buildTarget": "your-application-name:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dropmail-challenge:build:production"
+              "buildTarget": "dropmail-challenge:build:production"
             },
             "development": {
-              "browserTarget": "dropmail-challenge:build:development"
+              "buildTarget": "dropmail-challenge:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dropmail-challenge:build"
+            "buildTarget": "dropmail-challenge:build"
           }
         },
         "test": {
