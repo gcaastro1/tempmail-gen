@@ -3,7 +3,7 @@ import { HttpLink } from 'apollo-angular/http'
 import { NgModule, isDevMode } from '@angular/core'
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core'
 
-const uri = 'https://corsproxy.io/?https://dropmail.me/api/graphql/af_AQVqTpd1pV7-W-bQRsu3yBCrcY0LwI5kHakglUXO';
+const uri = '/api/graphql/af_AQVqTpd1pV7-W-bQRsu3yBCrcY0LwI5kHakglUXO';
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions {
   return {
