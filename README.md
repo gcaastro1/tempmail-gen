@@ -21,7 +21,7 @@ Built with a focus on performance and a clean user experience, the application i
 
 ## 🛠️ Technologies Used
 
-- **Framework:** [Angular](https://angular.io/) (v16)
+- **Framework:** [Angular](https://angular.io/) (v18)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [TailwindCSS](https://tailwindcss.com/)
 - **Data Fetching:** [Apollo GraphQL](https://www.npmjs.com/package/apollo-angular)
